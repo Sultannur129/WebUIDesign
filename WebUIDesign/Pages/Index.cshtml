@@ -1,0 +1,234 @@
+﻿@page
+@model IndexModel
+@{
+}
+
+<header>
+    
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-2">
+        <div class="container">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item" style="position:relative;left:-280px;">
+                        <b><Button style="background-color:#4682B4;font-size:larger;border:1px" class="nav-link text-white" asp-area="" asp-page="/Index"><b>+ New User </b></Button></b>
+                    </li>&nbsp;&nbsp;
+                    <li class="nav-item" style="position:relative;left:-280px;">
+                        <input type="checkbox" id="hUser" name="hideUser" value="Hide Disabled User">
+                        <b><label style="font-size:large;" for="Hideuser">Hide Disabled User </label></b>
+                    </li>
+                    <li class="nav-item" style="position:relative;left:1100px;">
+                        <Button form="myForm" style="background-color:#4682B4;font-size:larger;border:1px" class="nav-link text-white"><b>Save User </b></Button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+<style>
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        
+        width:990px;
+        position:relative;
+        left:5px;
+        
+
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    th {
+        background-color: #4682B4;
+        color:white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #add8e6;
+    }
+
+    
+
+</style>
+
+
+<style>
+    .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid white;
+        position: relative;
+        top: -20px;
+        left: 100px;
+    }
+
+    .arrow-up1 {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid white;
+        position: relative;
+        top: -20px;
+        left: 30px;
+    }
+
+    .arrow-down {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid white;
+        position: relative;
+        top: -15px;
+        left: 100px;
+    }
+
+</style>
+
+
+
+
+<div class="row">
+
+
+
+
+
+
+    <div class="column">
+        
+        <table >
+            <thead>
+            <tr>
+                <th>ID <div class="arrow-up1"></div> </th>
+                <th>User Name <div class="arrow-up"></div> <div class="arrow-down" /></th>
+                <th>Email <div class="arrow-up"></div> <div class="arrow-down" /></th>
+                <th>Enabled <div class="arrow-up"></div> <div class="arrow-down" /></th>
+            </tr>
+            </thead>
+
+            <tbody border="1">
+                @foreach(var item in Model.users)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.username</td>
+                        <td>@item.email</td>
+                        <td>@item.enabled</td>
+                    </tr>
+                    
+                }
+
+            </tbody>
+
+                
+
+            
+
+            
+
+        </table>
+        
+    </div>
+    <div class="column">
+
+        <div class="get" style="font-size:larger;color:white;color:black;position:relative;left:400px;">New User</div><br />
+
+        <form method="post" id="myForm" style="position:relative;left:500px;">
+
+
+            <label style="font-size:larger;" for="fname"><b>Username:</b></label>
+            <input style="position:relative;left:100px;border:2px solid lightgray;height:40px;" size="50" type="text" id="fname" name="username" value="" width=1000><br /><br /><br /><br />
+
+
+
+
+            <label style="font-size:larger;" for="lname"><b>Display Name:</b></label>
+            <input style="position:relative;left:65px;border:2px solid lightgray;height:40px;" size="50" type="text" id="lname" name="displayname" value="" /><br /><br /><br /><br />
+
+
+
+
+            <label style="font-size:larger;" for="phone"><b>Phone:</b></label>
+            <input style="position:relative;left:135px;border:2px solid lightgray;height:40px;" size="50" type="text" id="phon" name="phone" value=""><br /><br /><br /><br />
+
+
+
+
+            <label style="font-size:larger;" for="email"><b>Email:</b></label>
+            <input style="position:relative;left:142px;border:2px solid lightgray;height:40px;" size="50" type="email" id="Email" name="email" value=""><br /><br /><br /><br />
+
+
+
+
+            <label style="font-size:larger;" for="usrole"><b>User Roles:</b></label>
+            <select name="userole" id="usrole" style="position:relative;left:100px;min-width:410px;min-height:40px;border:2px solid lightgray">
+                <option value="" disabled selected style="color:lightgray;">Select user roles...</option>
+                <option value="Guest" style="text-align:right;width:30px;">Guest</option>
+                <option value="Admin" style="text-align:right;">Admin</option>
+                <option value="SuperAdmin" style="text-align:right;">SuperAdmin</option>
+            </select><br /><br /><br /><br />
+
+
+
+
+            <label style="font-size:larger;" for="enabled"> <b>Enabled:</b></label>
+            <input style="position:relative;left:120px;" type="checkbox"   id="enable" name="enabled" value="true">
+
+           
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+<style>
+
+    .get {
+        background-color: #f2f2f2;
+        width: 800px;
+        border: 15px solid #f2f2f2;
+        padding: 5px;
+        margin: 0px;
+    }
+
+    .row{
+       display:block;
+       width:80%;
+    }
+
+    .column{
+        width: 40%;
+        float: left;
+        display: inline-block;
+    }
+
+   
+
+</style>
+
+
